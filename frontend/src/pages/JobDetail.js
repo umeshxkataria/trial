@@ -20,7 +20,7 @@ const JobDetail = ({ user, onLogout }) => {
   if (user.role === 'job_seeker') {
     checkApplicationStatus();
   }
-}, [jobId, user.role, fetchJobDetails, checkApplicationStatus]);
+}, [jobId, fetchJobDetails, checkApplicationStatus]);
 
   const fetchJobDetails = useCallback(async () => {
     try {
@@ -40,7 +40,7 @@ const JobDetail = ({ user, onLogout }) => {
     } finally {
       setLoading(false);
     }
-  }, [jobId]);
+  }, [jobId , navigate]);
 
   const checkApplicationStatus = useCallback(async () => {
     try {
