@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { API } from '@/App';
-import React, { useEffect, useCallback } from 'react';
 import { Briefcase, MapPin, Clock, DollarSign, CheckCircle, ArrowLeft, Loader2, LogOut } from 'lucide-react';
 
 const JobDetail = ({ user, onLogout }) => {
