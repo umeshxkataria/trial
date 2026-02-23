@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { API } from '@/App';
+import React, { useEffect, useCallback } from 'react';
 import { Briefcase, MapPin, Clock, DollarSign, CheckCircle, ArrowLeft, Loader2, LogOut } from 'lucide-react';
 
 const JobDetail = ({ user, onLogout }) => {
@@ -22,7 +23,7 @@ const JobDetail = ({ user, onLogout }) => {
   }
 }, [jobId, user.role, fetchJobDetails, checkApplicationStatus]);
 
-  const fetchJobDetails = async () => {
+  const fetchJobDetails = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(`${API}/jobs/${jobId}`, {
@@ -40,9 +41,9 @@ const JobDetail = ({ user, onLogout }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [jobId]);
 
-  const checkApplicationStatus = async () => {
+  const checkApplicationStatus = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(`${API}/applications`, {
@@ -57,7 +58,7 @@ const JobDetail = ({ user, onLogout }) => {
     } catch (error) {
       console.error('Error checking application status');
     }
-  };
+  }, [jobId, user.role]);
 
   const handleApply = async () => {
     setApplying(true);
