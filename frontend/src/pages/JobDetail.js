@@ -16,11 +16,11 @@ const JobDetail = ({ user, onLogout }) => {
   const [hasApplied, setHasApplied] = useState(false);
 
   useEffect(() => {
-    fetchJobDetails();
-    if (user.role === 'job_seeker') {
-      checkApplicationStatus();
-    }
-  }, [jobId]);
+  fetchJobDetails();
+  if (user.role === 'job_seeker') {
+    checkApplicationStatus();
+  }
+}, [jobId, user.role, fetchJobDetails, checkApplicationStatus]);
 
   const fetchJobDetails = async () => {
     try {
